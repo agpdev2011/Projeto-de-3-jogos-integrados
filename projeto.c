@@ -19,7 +19,13 @@ void jogar(Pergunta perguntas[], int num_perguntas) {
             printf("%d. %s\n", j + 1, perguntas[i].alternativas[j]);
         }
         printf("Escolha a resposta (1-4): ");
-        scanf("%d", &resposta_usuario);
+        
+        // Verifica se a entrada é válida
+        while (scanf("%d", &resposta_usuario) != 1 || resposta_usuario < 1 || resposta_usuario > 4) {
+            printf("Entrada inválida. Por favor, escolha um número entre 1 e 4: ");
+            while(getchar() != '\n'); // Limpa o buffer de entrada
+        }
+        
         resposta_usuario--; // Ajusta para índice 0
 
         if (resposta_usuario == perguntas[i].resposta_correta) {
